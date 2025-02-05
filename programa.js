@@ -22,7 +22,47 @@ promesa.then((response) => response.text())
 
     });*/
 
-const url = "https://pokeapi.co/api/v2/pokemon/salamence";
+
+
+let campoNombre=document.getElementById("nombre");
+const botonBuscar=document.getElementById("buscar")
+
+
+botonBuscar.addEventListener('click',(e)=>{
+const direccion='https://pokeapi.co/api/v2/pokemon/'
+let nom=campoNombre.value;
+console.log(nom)
+
+fetch(`${direccion}/${nom}`)
+.then((respuesta)=>respuesta.json())
+.then((encontrado)=>{
+let tarjeta=document.createElement("div");
+let nombre=document.createElement("p");
+let habilidad=document.createElement("p");
+let tipo=document.createElement("p");
+let sonido=document.createElement("audio")
+sonido.setAttribute("src",encontrado.cries.latest)
+sonido.setAttribute("type","audio/ogg");
+boton.appendChild(sonido);
+boton.addEventListener('click',(e)=>{
+
+sonido.play();
+})
+})
+
+
+
+})
+const listado=[];
+const ver="'https://dummyjson.com/todos'"
+fetch('https://dummyjson.com/todos')
+.then(res => res.json())
+.then(data=>{
+
+console.log(data[1])
+
+});
+/*const url = "https://pokeapi.co/api/v2/pokemon/ditto";
 const promesa = fetch(url)
 promesa.then((response) => response.text())
     .then(data => {
@@ -72,7 +112,10 @@ caja.append(title,img,habilidad,boton)
 document.body.appendChild(caja)
  
     });
-function generarTarjeta(lista) {
+
+*/
+
+function generarTarjeta(elemento) {
   let tarjeta = document.createElement("div")
   let title = document.createElement("p")
   title.innerText = lista.name
